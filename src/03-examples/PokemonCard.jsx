@@ -1,4 +1,15 @@
+import { useLayoutEffect } from 'react';
+
 export const PokemonCard = ({id, name, sprites}) => {
+
+
+  useLayoutEffect(() => {
+    console.log('PokemonCard rendered')
+    return () => {
+      console.log('PokemonCard unmounted')
+    }
+    
+  }, [])
   return (
     <section>
 
