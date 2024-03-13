@@ -4,7 +4,7 @@ const initialState = [{
     done: false,
 }];
 
-const todoReducer = (state = initialState, action ={}) => {
+const todoReducer = (state = initialState, action = {}) => {
     if (action.type === 'add') {
         return [...state, action.payload];
     }
