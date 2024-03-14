@@ -1,15 +1,40 @@
-export const TodoAdd = ({ handleAddTodo }) => {
+import { useForm } from '../../src/hooks/useForm';
 
-    
+export const TodoAdd = ({ handleNewTodo }) => {
+
+    const { onInputChange, onResetForm, description } = useForm({
+        description: '',
+    });
+
+    const onFormSubmit = (e) => {
+
+        e.preventDefault();
+
+        if (description.trim().length <= 1) {
+            return;
+        }
+
+        const newTodo = {
+            id: new Date().getTime(),
+            desc: description,
+            done: false,
+        };
+
+        handleNewTodo(newTodo);
+        onResetForm();
+
+    }
+
+
     return (
-        <>
-            <form onSubmit={handleAddTodo}>
+            <form onSubmit={onFormSubmit}>
                 <input
                     type="text"
                     name="description"
-                    placeholder="New Task"
-                    autoComplete="off"
+                    placeholder="Learn..."
                     className="form-control"
+                    value={description}
+                    onChange={onInputChange}
                 />
                 <button
                     type="submit"
@@ -18,6 +43,5 @@ export const TodoAdd = ({ handleAddTodo }) => {
                     Add
                 </button>
             </form>
-        </>
     );
 }
