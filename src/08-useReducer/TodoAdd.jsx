@@ -1,6 +1,6 @@
 import { useForm } from '../../src/hooks/useForm';
 
-export const TodoAdd = ({ handleNewTodo }) => {
+export const TodoAdd = ({ onNewTodo }) => {
 
     const { onInputChange, onResetForm, description } = useForm({
         description: '',
@@ -20,7 +20,7 @@ export const TodoAdd = ({ handleNewTodo }) => {
             done: false,
         };
 
-        handleNewTodo(newTodo);
+        onNewTodo(newTodo);
         onResetForm();
 
     }
