@@ -1,29 +1,33 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { todoReducer } from "./todoReducer";
 import { TodoList } from "./TodoList";
 import { TodoAdd } from "./TodoAdd";
 
-const initialState = [{
-    id: new Date().getTime(),
-    desc: 'Collect Soul Stone',
-    done: false,
-},
-{
-    id: new Date().getTime() * 3,
-    desc: 'Collect Time Stone',
-    done: false,
-}];
+const initialState = [];
+
+//     id: new Date().getTime(),
+//     desc: 'Collect Soul Stone',
+//     done: false,
+// },
+
+const init = () => {
+    return JSON.parse(localStorage.getItem('todos')) || [];
+};
 
 export const TodoApp = () => {
 
-    const [todos, dispatch] = useReducer(todoReducer, initialState);
+    const [todos, dispatch] = useReducer(todoReducer, initialState, init);
 
-    const handleNewTodo = ( todo ) => {
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
+
+    const handleNewTodo = (todo) => {
         const action = {
             type: 'Add Todo',
             payload: todo
         };
-        
+
         dispatch(action);
         // console.log('handleNewTodo', todo);
     }
