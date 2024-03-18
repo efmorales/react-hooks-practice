@@ -1,12 +1,14 @@
-import { Route, Routes, Navigate} from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { HomePage } from "./HomePage";
 import { AboutPage } from "./AboutPage";
 import { LoginPage } from "./LoginPage";
 import { Navbar } from "./Navbar";
+import { UserProvider } from "./context/UserProvider";
 
 export const MainApp = () => {
     return (
-        <>
+        <UserProvider>
+            
             <Navbar />
 
             <hr />
@@ -20,6 +22,8 @@ export const MainApp = () => {
                 {/* <Route path="*" element={<h1>404 Not Found</h1>} /> */}
                 <Route path="/*" element={<Navigate to="/about" />} />
             </Routes>
-        </>
+
+        </UserProvider>
+
     )
 }
