@@ -11,15 +11,14 @@ describe('Tests in <MultipleCustomHooks />', () => {
 
     const mockIncrement = jest.fn();
 
+    useCounter.mockReturnValue({
+        counter: 1,
+        increment: mockIncrement,
+    });
+
     beforeEach(() => {
 
         jest.clearAllMocks();
-
-        useCounter.mockReturnValue({
-            counter: 1,
-            increment: mockIncrement,
-        });
-
 
     });
 
